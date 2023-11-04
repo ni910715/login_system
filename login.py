@@ -6,6 +6,7 @@ import sqlite3
 import cv2
 import os
 import uuid
+import shutil
 
 def main():
     main_win()
@@ -28,9 +29,9 @@ def main_win():
     frame = tk.Frame(main_window)
     frame.pack()
     # screen
-    register_btn = tk.Button(frame, font= "微軟正黑體", text= "註冊", height=2, width= 7, bg= "#FFD306", command=register_win)
-    update_btn = tk.Button(frame, font= "微軟正黑體", text= "更新", height=2, width= 7, bg= "#ADADAD", command=update_win)
-    delete_btn = tk.Button(frame, font= "微軟正黑體", text= "刪除", height=2, width= 7, bg= "#F75000", command=delete_win)
+    register_btn = tk.Button(frame, font= "微軟正黑體", text= "註冊", height=2, width= 7, bg= "#FFD306", activebackground= "#ffa806", command=register_win)
+    update_btn = tk.Button(frame, font= "微軟正黑體", text= "更新", height=2, width= 7, bg= "#ADADAD", activebackground= "#757575", command=update_win)
+    delete_btn = tk.Button(frame, font= "微軟正黑體", text= "刪除", height=2, width= 7, bg= "#F75000", activebackground= "#c94404", command=delete_win)
     register_btn.grid(row= 0, column= 1, padx= 15, pady=220)
     update_btn.grid(row= 0, column= 2, padx= 15, pady= 220)
     delete_btn.grid(row= 0, column= 3, padx= 15, pady= 220)
@@ -43,7 +44,7 @@ def delete_win():
     delete_window = tk.Tk()
     frame = tk.Frame(delete_window)
     frame.pack()
-    center(delete_window, 350, 250)
+    center(delete_window, 350, 150)
     delete_window.title("刪除資料")
 
     global delete_userId_en
@@ -54,10 +55,10 @@ def delete_win():
     delete_userId_en = tk.Entry(frame, font= "微軟正黑體")
     delete_userId_en.grid(row= 0, column=1, pady= 20)
     # button
-    delete_btn = tk.Button(frame, font="微軟正黑體", text= "刪除", command=delete)
-    back_btn = tk.Button(frame, font= "微軟正黑體", text= "返回", command= lambda:[delete_window.destroy(), main_win()])
-    delete_btn.grid(row= 4, column= 0, columnspan=1)
-    back_btn.grid(row= 4, column= 1, columnspan=1)
+    delete_btn = tk.Button(frame, font="微軟正黑體", text= "刪除", width= 6, height= 2, command=delete)
+    back_btn = tk.Button(frame, font= "微軟正黑體", text= "返回", width= 6 , height= 2, command= lambda:[delete_window.destroy(), main_win()])
+    delete_btn.grid(row= 4, column= 0, sticky="S")
+    back_btn.grid(row= 4, column= 1, sticky="E")
     
     delete_window.mainloop()
 
@@ -73,10 +74,10 @@ def update_win():
     update_name_lb = tk.Label(frame, font= "微軟正黑體", text= "員工姓名: ")
     update_company_lb = tk.Label(frame, font= "微軟正黑體", text= "所屬公司: ")
     update_number_lb = tk.Label(frame, font= "微軟正黑體", text= "聯絡方式: ")
-    update_userId_lb.grid(row= 0, column= 0, pady= 20)
-    update_name_lb.grid(row= 1, column= 0, pady= 20)
-    update_company_lb.grid(row= 2, column= 0, pady= 20)
-    update_number_lb.grid(row= 3, column= 0, pady= 20)
+    update_userId_lb.grid(row= 0, column= 0, pady= 15)
+    update_name_lb.grid(row= 1, column= 0, pady= 15)
+    update_company_lb.grid(row= 2, column= 0, pady= 15)
+    update_number_lb.grid(row= 3, column= 0, pady= 15)
     # entry
     global update_userId_en,update_name_en,update_company_en,update_number_en
     update_userId_en = tk.Entry(frame, font= "微軟正黑體")
@@ -88,10 +89,10 @@ def update_win():
     update_company_en.grid(row= 2, column= 1)
     update_number_en.grid(row= 3, column= 1)
     # button
-    update_btn = tk.Button(frame, font= "微軟正黑體", text= "更新", command=update)
-    back_btn = tk.Button(frame, font= "微軟正黑體", text= "返回", command= lambda:[update_window.destroy(), main_win()])
-    update_btn.grid(row= 4, column= 0)
-    back_btn.grid(row= 4, column= 1)
+    update_btn = tk.Button(frame, font= "微軟正黑體", text= "更新", width= 6, height= 2, command=update)
+    back_btn = tk.Button(frame, font= "微軟正黑體", text= "返回", width= 6, height= 2, command= lambda:[update_window.destroy(), main_win()])
+    update_btn.grid(row= 4, column= 0, sticky= "S")
+    back_btn.grid(row= 4, column= 1, sticky= "E")
 
     update_window.mainloop()
 
@@ -116,24 +117,24 @@ def register_win():
     company_lb.grid(row= 2, column= 0, pady= 20)
     number_lb.grid(row= 3, column= 0, pady= 20)
     # leftframe label
-    canvas = tk.Canvas(leftframe, width=224, height=224, highlightthickness=2, highlightbackground="black")
+    canvas = tk.Canvas(leftframe, width=220, height=220, highlightthickness=5, highlightbackground="black")
     canvas.pack()
-    canvas.create_rectangle(0, 0, 226, 226, fill="white")
+    canvas.create_rectangle(0, 0, 224, 224, fill="white")
     # entry
     global userId_en,name_en,company_en,number_en
-    userId_en = tk.Entry(rightframe, font= "微軟正黑體")
-    name_en = tk.Entry(rightframe, font= "微軟正黑體")
-    company_en = tk.Entry(rightframe, font= "微軟正黑體")
-    number_en = tk.Entry(rightframe, font= "微軟正黑體")
+    userId_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black")
+    name_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black")
+    company_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black")
+    number_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black")
     userId_en.grid(row= 0, column=1)
     name_en.grid(row= 1, column= 1)
     company_en.grid(row= 2, column= 1)
     number_en.grid(row= 3, column= 1)
     # button
-    save_btn = tk.Button(rightframe, font= "微軟正黑體", text= "註冊", command= lambda: save(canvas))
-    back_btn = tk.Button(rightframe, font= "微軟正黑體", text= "返回", command= lambda:[register_window.destroy(), main_win()])
-    save_btn.grid(row= 4, column= 0)
-    back_btn.grid(row= 4, column= 1)
+    save_btn = tk.Button(rightframe, font= "微軟正黑體", text= "註冊", width= 6, height= 2, command= lambda: save(canvas))
+    back_btn = tk.Button(rightframe, font= "微軟正黑體", text= "返回", width= 6, height= 2, command= lambda:[register_window.destroy(), main_win()])
+    save_btn.grid(row= 4, column= 0, sticky= "S")
+    back_btn.grid(row= 4, column= 1, sticky= "E")
 
     register_window.mainloop()
 
@@ -200,9 +201,11 @@ def delete():
             messagebox.showinfo("成功", "成功刪除使用者")
             if os.path.exists(path):
                 try:
-                    os.remove(path)
+                    shutil.rmtree(path)
                 except OSError:
                     messagebox.showwarning("異常", "文件路徑異常")
+            else:
+                messagebox.showwarning("異常", "文件路徑不存在")
             conn.commit()
     conn.close()
 
@@ -216,14 +219,12 @@ def datacollect(canvas, userId):
         nonlocal count
         ret, frame = cap.read()
         frame = frame[120:120+224, 200:200+224, :]
-
         if ret:
             uid = uuid.uuid4()
             image_path = f'{path}/{uid}.jpg'
             cv2.imwrite(image_path, frame)
             count += 1
             print(f"Captured image: {count}")
-
             # Display the current frame in the Toplevel window
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             img = Image.fromarray(frame)
@@ -231,12 +232,12 @@ def datacollect(canvas, userId):
             canvas.create_image(0, 0, anchor=tk.NW, image=photo)
             canvas.image = photo 
         if count < 300:
-            canvas.configure(highlightthickness=2, highlightbackground="red")
+            canvas.configure(highlightthickness=5, highlightbackground="red")
             register_window.after(20, show_frame)
         else:
             cap.release()
-            canvas.create_rectangle(0, 0, 226, 226, fill="white")
-            canvas.configure(highlightthickness=2, highlightbackground="black")
+            canvas.create_rectangle(0, 0, 224, 224, fill="white")
+            canvas.configure(highlightthickness=5, highlightbackground="black")
 
     show_frame()
 
