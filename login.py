@@ -52,7 +52,7 @@ def delete_win():
     delete_userId_lb = tk.Label(frame, font= "微軟正黑體", text= "員工編號: ")
     delete_userId_lb.grid(row= 0, column= 0, pady= 20)
     # entry
-    delete_userId_en = tk.Entry(frame, font= "微軟正黑體")
+    delete_userId_en = tk.Entry(frame, font= "微軟正黑體", highlightbackground= "black", width= 15)
     delete_userId_en.grid(row= 0, column=1, pady= 20)
     # button
     delete_btn = tk.Button(frame, font="微軟正黑體", text= "刪除", width= 6, height= 2, command=delete)
@@ -80,10 +80,10 @@ def update_win():
     update_number_lb.grid(row= 3, column= 0, pady= 15)
     # entry
     global update_userId_en,update_name_en,update_company_en,update_number_en
-    update_userId_en = tk.Entry(frame, font= "微軟正黑體")
-    update_name_en = tk.Entry(frame, font= "微軟正黑體")
-    update_company_en = tk.Entry(frame, font= "微軟正黑體")
-    update_number_en = tk.Entry(frame, font= "微軟正黑體")
+    update_userId_en = tk.Entry(frame, font= "微軟正黑體", highlightbackground= "black", width= 15)
+    update_name_en = tk.Entry(frame, font= "微軟正黑體", highlightbackground= "black", width= 15)
+    update_company_en = tk.Entry(frame, font= "微軟正黑體", highlightbackground= "black", width= 15)
+    update_number_en = tk.Entry(frame, font= "微軟正黑體", highlightbackground= "black", width= 15)
     update_userId_en.grid(row= 0, column=1)
     update_name_en.grid(row= 1, column= 1)
     update_company_en.grid(row= 2, column= 1)
@@ -122,10 +122,10 @@ def register_win():
     canvas.create_rectangle(0, 0, 224, 224, fill="white")
     # entry
     global userId_en,name_en,company_en,number_en
-    userId_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black")
-    name_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black")
-    company_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black")
-    number_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black")
+    userId_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black", width=15)
+    name_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black", width=15)
+    company_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black", width=15)
+    number_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black", width=15)
     userId_en.grid(row= 0, column=1)
     name_en.grid(row= 1, column= 1)
     company_en.grid(row= 2, column= 1)
