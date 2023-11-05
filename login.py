@@ -117,9 +117,9 @@ def register_win():
     company_lb.grid(row= 2, column= 0, pady= 20)
     number_lb.grid(row= 3, column= 0, pady= 20)
     # leftframe label
-    canvas = tk.Canvas(leftframe, width=220, height=220, highlightthickness=5, highlightbackground="black")
+    canvas = tk.Canvas(leftframe, width=224, height=224, highlightthickness=5, highlightbackground="black")
     canvas.pack()
-    canvas.create_rectangle(0, 0, 224, 224, fill="white")
+    canvas.create_rectangle(0, 0, 229, 229, fill="white")
     # entry
     global userId_en,name_en,company_en,number_en
     userId_en = tk.Entry(rightframe, font= "微軟正黑體", highlightbackground= "black", width=15)
@@ -229,14 +229,14 @@ def datacollect(canvas, userId):
             frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             img = Image.fromarray(frame)
             photo = ImageTk.PhotoImage(image=img)
-            canvas.create_image(0, 0, anchor=tk.NW, image=photo)
+            canvas.create_image(5, 5, anchor=tk.NW, image=photo)
             canvas.image = photo 
         if count < 300:
             canvas.configure(highlightthickness=5, highlightbackground="red")
             register_window.after(20, show_frame)
         else:
             cap.release()
-            canvas.create_rectangle(0, 0, 224, 224, fill="white")
+            canvas.create_rectangle(0, 0, 229, 229, fill="white")
             canvas.configure(highlightthickness=5, highlightbackground="black")
 
     show_frame()
